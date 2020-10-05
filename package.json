@@ -1,15 +1,17 @@
 {
-  "name": "with-typescript",
+  "name": "landing",
   "version": "1.0.0",
   "scripts": {
     "dev": "next -p $PORT",
     "build": "next build",
-    "start": "next start -p $PORT -H $HOST",
+    "start": "node server",
     "type-check": "tsc"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "axios": "^0.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "next": "latest",
     "normalize.css": "^8.0.1",
     "react": "^16.12.0",
