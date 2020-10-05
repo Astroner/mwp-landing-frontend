@@ -1,0 +1,17 @@
+.root {
+    position: relative;
+    outline: 2px solid rgb(22, 131, 233);
+}
+
+.edit {
+    position: absolute;
+
+    cursor: pointer;
+
+    border: 1px solid red;
+
+    top: 0;
+    right: 0;
+
+    font-size: 20px;
+}

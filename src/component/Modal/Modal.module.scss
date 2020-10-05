@@ -1,0 +1,34 @@
+.root {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+
+    top: 0;
+    left: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-top: 30vh;
+
+    background-color: rgba(46, 46, 46, 0.4);
+
+    overflow-y: auto;
+
+    z-index: 1000;
+}
+
+.modal {
+    width: 400px;
+    padding: 10px 20px;
+
+    background-color: #fff; 
+    border-radius: 4px;
+}
+
+.close {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
