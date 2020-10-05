@@ -10,30 +10,37 @@ import { getStore } from '../helpers/redux/store';
 
 export default class MyApp extends App<{ lg: string, map: Record<string, IServerTextContext["lngMap"]> }> {
   static async getInitialProps({ Component, ctx }: AppContext) {
-    
-    const [pageProps, server] = await Promise.all([
-      Component.getInitialProps ? Component.getInitialProps(ctx) : Promise.resolve({}),
-      languageMap(),
-    ]);
-    const map: Record<string, IServerTextContext["lngMap"]> = {};
-    
-    for (let item of server) {
-      for (let key in item) {
-        if (key.slice(0, 4) !== "lng_") continue;
-        const lng = key.slice(4);
+    try {
+      const [pageProps, server] = await Promise.all([
+        Component.getInitialProps ? Component.getInitialProps(ctx) : Promise.resolve({}),
+        languageMap(),
+      ]);
+      const map: Record<string, IServerTextContext["lngMap"]> = {};
+      
+      for (let item of server) {
+        for (let key in item) {
+          if (key.slice(0, 4) !== "lng_") continue;
+          const lng = key.slice(4);
 
-        if (!(lng in map)) {
-          map[lng] = {};
+          if (!(lng in map)) {
+            map[lng] = {};
+          }
+          map[lng][item.key] = { value: item[key], id: item._id };
         }
-        map[lng][item.key] = { value: item[key], id: item._id };
+      }
+      const lg = ctx.query.en ? "en" : "ru"
+      return {
+        pageProps,
+        map,
+        lg
+      };
+    }catch(e){
+      return {
+        pageProps: {},
+        map: {},
+        lg: "ru"
       }
     }
-    const lg = ctx.query.en ? "en" : "ru"
-    return {
-      pageProps,
-      map,
-      lg
-    };
   }
 
   store = getStore()

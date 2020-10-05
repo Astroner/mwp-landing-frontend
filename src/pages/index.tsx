@@ -51,12 +51,19 @@ const Index: NextPage<IIndex> = (props) => {
 
 Index.getInitialProps = async (ctx) => {
 
-  const items = await getBloggers();
-  
-  return {
-    lng: ctx.query.en ? "en" : "ru",
-    items,
-  };
+  try {
+    const items = await getBloggers();
+
+    return {
+      lng: ctx.query.en ? "en" : "ru",
+      items,
+    };
+  }catch(e){
+    return {
+      items: [],
+      lng: "ru"
+    }
+  }
 }
 
 export default Index;
