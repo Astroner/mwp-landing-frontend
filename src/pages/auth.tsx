@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useRouter } from "next/router";
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -46,11 +46,5 @@ const Auth: NextPage<IAuth> = () => {
         </div>
     )
 }
-
-export const getStaticProps: GetStaticProps<IAuth> = async () => {
-    return {
-        props: {}
-    }
-};
 
 export default Auth;
